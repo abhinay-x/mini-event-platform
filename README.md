@@ -8,7 +8,7 @@ This project was built as part of a Full Stack Developer Intern technical assess
 
 - **Frontend (Vercel):** 
 - **Backend (Render):** 
-- **GitHub Repository:** 
+- **GitHub Repository:** https://github.com/abhinay-x/mini-event-platform.git
 
 ## 🧱 Tech Stack
 
