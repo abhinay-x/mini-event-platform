@@ -2,11 +2,10 @@
 
 A full-stack Mini Event Platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js) that allows users to create events, view upcoming events, and RSVP with strict capacity enforcement and concurrency safety.
 
-This project was built as part of a Full Stack Developer Intern technical assessment, with a strong focus on backend correctness, business logic, and deployment readiness.
 
 ## 🔗 Live Application
 
-- **Frontend (Vercel):** 
+- **Frontend (Vercel):** https://mini-event-platform-omega.vercel.app
 - **Backend (Render):** https://mini-event-platform-3jmj.onrender.com
 - **GitHub Repository:** https://github.com/abhinay-x/mini-event-platform.git
 
@@ -57,7 +56,7 @@ mini-event-platform/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone 
+git clone https://github.com/abhinay-x/mini-event-platform.git
 cd mini-event-platform
 ```
 
@@ -72,8 +71,8 @@ Create a `.env` file inside `/server` with:
 
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://abhinay:<password>@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
-JWT_SECRET=your_jwt_secret
+MONGO_URI=<your_mongodb_connection_string>
+JWT_SECRET=<your_jwt_secret>
 CLIENT_URL=http://localhost:5173
 ```
 
@@ -179,7 +178,7 @@ If RSVP record creation fails, the attendee count is reverted, ensuring data con
 Environment variables:
 
 ```
-VITE_API_BASE_URL=http://localhost:5000
+VITE_API_URL=https://mini-event-platform-3jmj.onrender.com
 ```
 
 ### 🧠 Backend Deployment (Render)
@@ -187,6 +186,6 @@ VITE_API_BASE_URL=http://localhost:5000
 - **Build command:** `npm install`
 - **Start command:** `npm start`
 - **Environment variables:** 
-      MONGO_URI=mongodb+srv://abhinay:<password>@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
-      JWT_SECRET=your_jwt_secret
+      MONGO_URI=<your_mongodb_connection_string>
+      JWT_SECRET=<your_jwt_secret>
       PORT=5000
