@@ -72,7 +72,7 @@ Create a `.env` file inside `/server` with:
 
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://abhinay:Abhinay%401234@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
+MONGO_URI=mongodb+srv://abhinay:<password>@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
 JWT_SECRET=your_jwt_secret
 CLIENT_URL=http://localhost:5173
 ```
@@ -186,6 +186,6 @@ VITE_API_BASE_URL=http://localhost:5000
 - **Build command:** `npm install`
 - **Start command:** `npm start`
 - **Environment variables:** 
-      MONGO_URI=mongodb+srv://abhinay:Abhinay@1234@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
+      MONGO_URI=mongodb+srv://abhinay:<password>@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
       JWT_SECRET=your_jwt_secret
       PORT=5000      
