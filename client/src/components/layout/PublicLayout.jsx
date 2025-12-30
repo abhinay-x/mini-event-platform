@@ -9,7 +9,7 @@ const PublicHeader = () => {
   return (
     <header className="public-header">
       <div className="container">
-        <Link to="/" className="logo-text">
+        <Link to="/app" className="logo-text">
           Mini Event Platform
         </Link>
         <nav className="public-nav">
@@ -21,9 +21,9 @@ const PublicHeader = () => {
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <Link to="/login" className="btn btn-icon">
+          <Link to="/app" className="btn btn-icon">
             <LogIn size={20} />
-            <span className="btn-text">Sign in</span>
+            <span className="btn-text">Dashboard</span>
           </Link>
           <Link to="/register" className="btn btn-outline btn-icon">
             <UserPlus size={20} />
