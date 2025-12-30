@@ -1,10 +1,15 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const ASSET_BASE = API_BASE.replace(/\/api$/, '');
 
-export const formatDateTime = (value) => dayjs(value).format('ddd, MMM D • h:mm A');
-export const formatDateInput = (value) => dayjs(value).format('YYYY-MM-DDTHH:mm');
+export const formatDateTime = (value) => dayjs(value).local().format('ddd, MMM D • h:mm A');
+export const formatDateInput = (value) => dayjs(value).local().format('YYYY-MM-DDTHH:mm');
 
 export const categories = ['General', 'Tech', 'Design', 'Business', 'Wellness', 'Community'];
 

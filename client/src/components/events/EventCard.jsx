@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin, Users } from 'lucide-react';
+import { CalendarDays, ImageOff, MapPin, Users } from 'lucide-react';
 import { formatDateTime, getCapacityStatus, withAssetHost } from '../../utils/format.js';
 import './EventCard.css';
 
@@ -32,11 +32,18 @@ const EventCard = ({ event, onToggleRsvp, onEdit, onDelete }) => {
             {event.attendeesCount}/{event.capacity}
           </span>
         </div>
-        {event.imageUrl && (
-          <div className="event-img">
-            <img src={withAssetHost(event.imageUrl)} alt={event.title} loading="lazy" />
-          </div>
-        )}
+        <div className="event-img">
+          {event.imageUrl ? (
+            <img src={withAssetHost(event.imageUrl)} alt={event.title} loading="lazy" onError={(event) => {
+              event.currentTarget.dataset.failed = true;
+            }} />
+          ) : (
+            <div className="event-img__placeholder">
+              <ImageOff size={18} />
+              <span>No image</span>
+            </div>
+          )}
+        </div>
       </div>
       <div className="event-card__actions">
         <button className="btn btn-primary" disabled={ctaDisabled} onClick={() => onToggleRsvp(event)}>

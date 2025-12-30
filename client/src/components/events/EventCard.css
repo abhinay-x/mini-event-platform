@@ -36,12 +36,32 @@
 .event-img {
   border-radius: 1rem;
   overflow: hidden;
+  min-height: 180px;
+  background: var(--surface-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .event-img img {
   width: 100%;
   height: 220px;
   object-fit: cover;
+  display: block;
+}
+
+.event-img img[data-failed='true'] {
+  display: none;
+}
+
+.event-img__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
 .event-card__actions {
