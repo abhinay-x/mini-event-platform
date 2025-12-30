@@ -7,7 +7,7 @@ This project was built as part of a Full Stack Developer Intern technical assess
 ## 🔗 Live Application
 
 - **Frontend (Vercel):** 
-- **Backend (Render):** 
+- **Backend (Render):** https://mini-event-platform-3jmj.onrender.com
 - **GitHub Repository:** https://github.com/abhinay-x/mini-event-platform.git
 
 ## 🧱 Tech Stack
@@ -83,7 +83,7 @@ Start backend server:
 npm run dev
 ```
 
-Backend will run at: `http://localhost:5000`
+Backend will run at: `http://localhost:5000`or https://mini-event-platform-3jmj.onrender.com
 
 ### 3️⃣ Frontend Setup
 
