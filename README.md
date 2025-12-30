@@ -100,6 +100,7 @@ Frontend will run at: `http://localhost:5173`
 - Users can sign up and log in
 - Passwords are securely hashed using bcrypt
 - JWT tokens are issued on login
+- Sessions persist for 24 hours with automatic refresh handling
 - Protected routes use JWT middleware
 - Only authenticated users can create, edit, delete, or RSVP to events
 
@@ -188,4 +189,4 @@ VITE_API_BASE_URL=http://localhost:5000
 - **Environment variables:** 
       MONGO_URI=mongodb+srv://abhinay:<password>@cluster0.edyvmpz.mongodb.net/?appName=Cluster0
       JWT_SECRET=your_jwt_secret
-      PORT=5000      
+      PORT=5000

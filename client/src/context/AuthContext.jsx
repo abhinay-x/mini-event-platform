@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import api, { setAuthHeader } from '../api/http.js';
 
+const SESSION_KEY = 'authSession';
+const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 1 day
+
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -8,32 +11,59 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [initializing, setInitializing] = useState(true);
 
-  useEffect(() => {
-    const savedToken = localStorage.getItem('authToken');
-    const savedUser = localStorage.getItem('authUser');
-    if (savedToken && savedUser) {
-      setToken(savedToken);
-      setUser(JSON.parse(savedUser));
-      setAuthHeader(savedToken);
-    }
-  }, []);
-
-  const persistSession = (tokenValue, userPayload) => {
+  const persistSession = (tokenValue, userPayload, expiresAt = Date.now() + SESSION_TTL_MS) => {
     setToken(tokenValue);
     setUser(userPayload);
     setAuthHeader(tokenValue);
-    localStorage.setItem('authToken', tokenValue);
-    localStorage.setItem('authUser', JSON.stringify(userPayload));
+    const sessionPayload = {
+      token: tokenValue,
+      user: userPayload,
+      expiresAt
+    };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(sessionPayload));
   };
 
   const clearSession = () => {
     setToken(null);
     setUser(null);
     setAuthHeader(null);
+    localStorage.removeItem(SESSION_KEY);
     localStorage.removeItem('authToken');
     localStorage.removeItem('authUser');
   };
+
+  useEffect(() => {
+    const restoreSession = () => {
+      try {
+        const rawSession = localStorage.getItem(SESSION_KEY);
+        if (rawSession) {
+          const parsed = JSON.parse(rawSession);
+          if (parsed.expiresAt && parsed.expiresAt > Date.now() && parsed.token && parsed.user) {
+            persistSession(parsed.token, parsed.user, parsed.expiresAt);
+            return;
+          }
+          localStorage.removeItem(SESSION_KEY);
+        }
+
+        const legacyToken = localStorage.getItem('authToken');
+        const legacyUser = localStorage.getItem('authUser');
+        if (legacyToken && legacyUser) {
+          persistSession(legacyToken, JSON.parse(legacyUser));
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('authUser');
+        }
+      } catch (err) {
+        console.error('Failed to restore session', err);
+        localStorage.removeItem(SESSION_KEY);
+      } finally {
+        setInitializing(false);
+      }
+    };
+
+    restoreSession();
+  }, []);
 
   const handleAuth = async (path, payload) => {
     setLoading(true);
@@ -57,11 +87,12 @@ export const AuthProvider = ({ children }) => {
       token,
       loading,
       error,
+      initializing,
       login: (payload) => handleAuth('login', payload),
       register: (payload) => handleAuth('register', payload),
       logout: clearSession
     }),
-    [user, token, loading, error]
+    [user, token, loading, error, initializing]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
