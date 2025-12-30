@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import Spinner from '../components/common/Spinner.jsx';
 import AppShell from '../components/layout/AppShell.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
 import RegisterPage from '../pages/RegisterPage.jsx';
@@ -10,10 +11,27 @@ import LandingPage from '../pages/LandingPage.jsx';
 import PublicLayout from '../components/layout/PublicLayout.jsx';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth();
+  const { user, initializing } = useAuth();
+
+  if (initializing) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '80vh'
+        }}
+      >
+        <Spinner size={32} />
+      </div>
+    );
+  }
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+
   return children;
 };
 
