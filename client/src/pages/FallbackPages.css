@@ -1,0 +1,15 @@
+.fallback-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--body-bg);
+}
+
+.fallback-page .card {
+  text-align: center;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}

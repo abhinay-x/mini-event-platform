@@ -1,0 +1,110 @@
+.public-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.public-main {
+  flex: 1;
+}
+
+.public-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 1.35rem clamp(1.75rem, 5vw, 4rem);
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--body-bg) 85%, transparent);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+}
+
+.public-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.public-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.public-nav a {
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.public-nav a:hover {
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--text-primary);
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.18);
+}
+
+.nav-icon-btn {
+  border: none;
+  background: var(--surface-muted);
+  color: var(--text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-icon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.18);
+}
+
+.public-nav a {
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-icon .btn-text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .btn-icon .btn-text {
+    display: inline;
+  }
+}
+
+.public-footer {
+  margin-top: 3rem;
+  padding: clamp(2rem, 6vw, 3rem) clamp(1.75rem, 4vw, 3.5rem);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.12)) var(--surface);
+  border-top: 1px solid rgba(124, 58, 237, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.public-footer p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .public-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

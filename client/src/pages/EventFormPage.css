@@ -1,0 +1,13 @@
+.event-form-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.event-form-page h1 {
+  margin-bottom: 0.5rem;
+}
+
+.event-form-page p {
+  color: var(--text-secondary);
+  margin-top: 0;
+}

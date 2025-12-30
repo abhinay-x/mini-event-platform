@@ -1,0 +1,14 @@
+.events-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.events-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.muted-text {
+  color: var(--text-secondary);
+  text-align: center;
+}

@@ -1,0 +1,22 @@
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-form .field input,
+.event-form .field textarea,
+.event-form .field select {
+  width: 100%;
+}
+
+.event-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-form .preview {
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 0.75rem;
+}
