@@ -21,7 +21,7 @@ const RegisterPage = () => {
     setError('');
     try {
       await registerUser(form);
-      navigate('/app');
+      navigate('/app', { replace: true });
     } catch (err) {
       setError(err.message);
     }

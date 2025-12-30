@@ -28,7 +28,7 @@ const AppShell = ({ children }) => {
     <div className="app-shell">
       <header className={`app-header card ${open ? 'menu-open' : ''}`}>
         <div className="branding">
-          <Link to="/" className="logo-text">
+          <Link to="/app" className="logo-text">
             Mini Event Platform
           </Link>
         </div>

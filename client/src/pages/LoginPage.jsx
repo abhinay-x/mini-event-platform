@@ -21,7 +21,7 @@ const LoginPage = () => {
     setError('');
     try {
       await login(form);
-      navigate('/app');
+      navigate('/app', { replace: true });
     } catch (err) {
       setError(err.message);
     }

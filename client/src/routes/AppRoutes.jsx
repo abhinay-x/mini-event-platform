@@ -10,26 +10,42 @@ import ProfilePage from '../pages/ProfilePage.jsx';
 import LandingPage from '../pages/LandingPage.jsx';
 import PublicLayout from '../components/layout/PublicLayout.jsx';
 
+const GuardFallback = () => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '80vh'
+    }}
+  >
+    <Spinner size={32} />
+  </div>
+);
+
 const ProtectedRoute = ({ children }) => {
   const { user, initializing } = useAuth();
 
   if (initializing) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '80vh'
-        }}
-      >
-        <Spinner size={32} />
-      </div>
-    );
+    return <GuardFallback />;
   }
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+const PublicRoute = ({ children }) => {
+  const { user, initializing } = useAuth();
+
+  if (initializing) {
+    return <GuardFallback />;
+  }
+
+  if (user) {
+    return <Navigate to="/app" replace />;
   }
 
   return children;
@@ -40,25 +56,31 @@ const AppRoutes = () => (
     <Route
       path="/"
       element={
-        <PublicLayout>
-          <LandingPage />
-        </PublicLayout>
+        <PublicRoute>
+          <PublicLayout>
+            <LandingPage />
+          </PublicLayout>
+        </PublicRoute>
       }
     />
     <Route
       path="/login"
       element={
-        <PublicLayout>
-          <LoginPage />
-        </PublicLayout>
+        <PublicRoute>
+          <PublicLayout>
+            <LoginPage />
+          </PublicLayout>
+        </PublicRoute>
       }
     />
     <Route
       path="/register"
       element={
-        <PublicLayout>
-          <RegisterPage />
-        </PublicLayout>
+        <PublicRoute>
+          <PublicLayout>
+            <RegisterPage />
+          </PublicLayout>
+        </PublicRoute>
       }
     />
 
